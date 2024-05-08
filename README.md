@@ -11,14 +11,16 @@ Report level for reviewdog [info,warning,error]. It's same as `-level` flag of r
 
 ### `phpstan_level`
 Report level for phpstan.
-**Default** `4`
+**Default** ''
+On default this is level 4.
 
 ### `reporter`
 Reporter of reviewdog command [github-pr-check,github-check,github-pr-review]. It's same as `-reporter` flag of reviewdog.
 **Default** `github-pr-check`
 
 ### `target_directory`
-**Default** `src`
+**Default** ''
+On default this only scans the `src` directory.
 
 ### `fail_on_error`
 Fail on error.
@@ -43,7 +45,6 @@ phpstan-linter:
                 github_token: '${{ github.token }}'
                 level: 'error'
                 fail_on_error: 'false'
-                phpstan_level: 4
                 reporter: 'github-pr-review'
-                target_directory: 'src'
 ```
+

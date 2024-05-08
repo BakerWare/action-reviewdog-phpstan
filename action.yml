@@ -12,15 +12,15 @@ inputs:
 
   phpstan_level:
     description: 'Report level for phpstan.'
-    default: '4'
+    default: ''
 
   reporter:
     description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
 
   target_directory:
-    description: Directory to run checks against.
-    default: 'src'
+    description: 'Directory to run checks against'
+    default: ''
 
   fail_on_error:
     description: Fail on error.
@@ -45,3 +45,4 @@ runs:
 branding:
   icon: 'check-circle'
   color: 'green'
+
