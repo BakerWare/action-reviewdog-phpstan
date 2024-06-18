@@ -1,3 +1,17 @@
 includes:
     - phpstan.dist.neon
     - /composer/vendor/sidz/phpstan-rules/rules.neon
+
+parameters:
+    sidzIgnoreNumericStrings: true
+    ignoreErrors:
+        -
+            message: '#Do not (use|return|assign) magic number (.)#'
+            paths:
+                - tests/*
+        -
+            message: '#^Do not assign magic number to variable\. Move to constant with a suitable name\.$#'
+        -
+            message: '#^Do not use magic number as default parameter\. Move to constant with a suitable name\.$#'
+        -
+            message: '#^Do not return magic number\. Move to constant with a suitable name\.$#'
