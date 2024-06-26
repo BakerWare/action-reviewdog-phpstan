@@ -9,6 +9,7 @@ parameters:
             message: '#Do not (use|return|assign) magic number (.)#'
             paths:
                 - tests/*
+                - src/DataFixtures/*
         -
             message: '#^Do not assign magic number to variable\. Move to constant with a suitable name\.$#'
         -
