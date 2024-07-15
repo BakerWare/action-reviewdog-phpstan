@@ -2,7 +2,7 @@ FROM ghcr.io/phpstan/phpstan:latest-php8.2
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions gd xsl zip imap intl soap bz2 exif bcmath http
+    install-php-extensions intl soap
 
 RUN composer global require sidz/phpstan-rules
 
