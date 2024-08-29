@@ -27,5 +27,5 @@ if [ -n "${INPUT_TARGET_DIRECTORY}" ]; then
 fi
 
 php /composer/vendor/phpstan/phpstan/phpstan.phar analyse ${TARGET_DIRECTORY} ${OPTION_LEVEL} --memory-limit 1G --error-format=raw ${INPUT_ARGS} |
-    reviewdog -name=PHPStan -f=phpstan -reporter=${INPUT_REPORTER} -fail-on-error=${INPUT_FAIL_ON_ERROR} -level=${INPUT_LEVEL} -diff='git diff'
+    reviewdog -name=PHPStan -f=phpstan -reporter=${INPUT_REPORTER} -fail-on-error=${INPUT_FAIL_ON_ERROR} -level=${INPUT_LEVEL} -diff='git diff FETCH_HEAD'
 
