@@ -23,6 +23,7 @@ if [ -n "${INPUT_TARGET_DIRECTORY}" ]; then
     TARGET_DIRECTORY="${INPUT_TARGET_DIRECTORY}"
 fi
 
+echo "${GITHUB_WORKSPACE}/phpstan.dist.neon"
 cat "${GITHUB_WORKSPACE}/phpstan.dist.neon"
 
 php /composer/vendor/phpstan/phpstan/phpstan.phar analyse ${TARGET_DIRECTORY} ${OPTION_LEVEL} --memory-limit 1G --error-format=raw ${INPUT_ARGS} |
