@@ -12,8 +12,6 @@ if [ ! -f "${GITHUB_WORKSPACE}/phpstan.dist.neon" ]; then
     cp /config/phpstan.dist.neon "${GITHUB_WORKSPACE}/phpstan.dist.neon"
 fi
 
-cp /config/phpstan.neon "${GITHUB_WORKSPACE}/phpstan.neon"
-
 OPTION_LEVEL=""
 TARGET_DIRECTORY=""
 
