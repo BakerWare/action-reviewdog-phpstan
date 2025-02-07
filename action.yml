@@ -37,6 +37,8 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/bakerware/action-reviewdog-phpstan/php-8.2:latest'
+  env:
+    GH_TOKEN: ${{ inputs.github_token }}
   args:
     - ${{ inputs.github_token }}
     - ${{ inputs.level }}
