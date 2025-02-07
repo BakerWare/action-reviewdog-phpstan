@@ -13,13 +13,6 @@ ARG PHP_ENVIRONMENT
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN curl -o /tmp/PKIOverheid-RootCA-G3.cer https://cert.pkioverheid.nl/RootCA-G3.cer && \
-    curl -o /tmp/PKIOverheid-PrivateRootCA-G1.cer https://cert.pkioverheid.nl/PrivateRootCA-G1.cer && \
-    openssl x509 -in /tmp/PKIOverheid-RootCA-G3.cer -out /usr/local/share/ca-certificates/PKIOverheid-RootCA-G3.crt && \
-    openssl x509 -in /tmp/PKIOverheid-PrivateRootCA-G1.cer -out /usr/local/share/ca-certificates/PKIOverheid-PrivateRootCA-G1.crt && \
-    update-ca-certificates && \
-    rm -rf /tmp/*.cer
-
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions ${PHP_EXTENSIONS}
 

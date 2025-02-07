@@ -14,6 +14,10 @@ inputs:
     description: 'Report level for phpstan.'
     default: ''
 
+  php_version:
+    description: 'PHP version to use.'
+    default: '8.2'
+
   reporter:
     description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
@@ -32,7 +36,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: ghcr.io/bakerware/action-reviewdog-phpstan/php-${{ inputs.php_version }}:latest
   args:
     - ${{ inputs.github_token }}
     - ${{ inputs.level }}
@@ -45,4 +49,3 @@ runs:
 branding:
   icon: 'check-circle'
   color: 'green'
-
