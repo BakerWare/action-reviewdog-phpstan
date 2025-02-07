@@ -32,7 +32,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ghcr.io/bakerware/docker-images/php-8.2-ci:latest'
   args:
     - ${{ inputs.github_token }}
     - ${{ inputs.level }}
@@ -45,4 +45,3 @@ runs:
 branding:
   icon: 'check-circle'
   color: 'green'
-
