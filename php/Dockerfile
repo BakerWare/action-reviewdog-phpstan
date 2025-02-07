@@ -46,3 +46,7 @@ USER app
 
 RUN [ -z "${PHP_DEV_COMPOSER_PACKAGES}" ] || composer -n global require $PHP_DEV_COMPOSER_PACKAGES
 ENV PATH="${PATH}:/home/app/.composer/vendor/bin"
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
