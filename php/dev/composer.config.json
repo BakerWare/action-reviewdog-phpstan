@@ -1,8 +1,0 @@
-{
-    "config": {
-        "allow-plugins": {
-            "sandersander/composer-link": true,
-            "franzl/studio": true
-        }
-    }
-}
