@@ -23,5 +23,5 @@ if [ -n "${INPUT_TARGET_DIRECTORY}" ]; then
     TARGET_DIRECTORY="${INPUT_TARGET_DIRECTORY}"
 fi
 
-php /composer/vendor/phpstan/phpstan/phpstan.phar analyse ${TARGET_DIRECTORY} ${OPTION_LEVEL} --memory-limit 1G --error-format=raw ${INPUT_ARGS} |
+phpstan analyse ${TARGET_DIRECTORY} ${OPTION_LEVEL} --memory-limit 1G --error-format=raw ${INPUT_ARGS} |
     reviewdog -tee -name=PHPStan -f=phpstan -reporter=${INPUT_REPORTER} -fail-on-error=${INPUT_FAIL_ON_ERROR} -level=${INPUT_LEVEL} -diff='git diff'
