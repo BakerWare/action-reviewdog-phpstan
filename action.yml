@@ -45,6 +45,7 @@ runs:
     - ${{ inputs.args }}
     - ${{ inputs.fail_on_error }}
     - ${{ inputs.phpstan_level }}
+    - ${{ inputs.php_version }}
 
 branding:
   icon: 'check-circle'
