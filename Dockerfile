@@ -4,7 +4,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions intl soap
 
-RUN composer global require sidz/phpstan-rules phpunit/phpunit ^9
+RUN composer global require phpstan/phpstan-symfony sidz/phpstan-rules phpunit/phpunit ^9
 
 ENV REVIEWDOG_VERSION=v0.20.3
 
