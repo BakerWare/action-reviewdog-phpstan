@@ -23,7 +23,7 @@ if [ -n "${INPUT_TARGET_DIRECTORY}" ]; then
     TARGET_DIRECTORY="${INPUT_TARGET_DIRECTORY}"
 fi
 
-ls -la var/cache
+ls -la var/cache/test
 
 composer install
 
