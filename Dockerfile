@@ -6,10 +6,10 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
 
 RUN composer global require sidz/phpstan-rules phpunit/phpunit ^9
 
-ENV REVIEWDOG_VERSION=v0.9.17
+ENV REVIEWDOG_VERSION=v0.20.3
 
 RUN apk --no-cache add git
-RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/v0.20.1/install.sh | sh -s -- -b /usr/local/bin/
+RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/v0.20.3/install.sh | sh -s -- -b /usr/local/bin/
 
 COPY .github/phpstan.dist.neon /config/phpstan.dist.neon
 
