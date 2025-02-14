@@ -12,8 +12,6 @@ RUN apk --no-cache add git
 RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/v0.20.3/install.sh | sh -s -- -b /usr/local/bin/
 
 COPY .github/phpstan.dist.neon /config/phpstan.dist.neon
-COPY var /github/workspace/var/
-
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
