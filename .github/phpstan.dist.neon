@@ -16,4 +16,5 @@ parameters:
         -
             message: '#^Do not return magic number\. Move to constant with a suitable name\.$#'
 includes:
-    - /composer/vendor/sidz/phpstan-rules/rules.neon
+    - vendor/sidz/phpstan-rules/rules.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
