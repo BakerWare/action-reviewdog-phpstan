@@ -1,48 +1,56 @@
-name: 'Run PHPStan with ReviewDog'
-description: '🐾 Run PHP Static Analyzer with ReviewDog.'
-author: 'Mike Bronner'
+name: "Run PHPStan with ReviewDog"
+description: "🐾 Run PHP Static Analyzer with ReviewDog."
+author: "Mike Bronner"
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN'
-    default: '${{ github.token }}'
+    description: "GITHUB_TOKEN."
+    required: true
+    default: ${{ github.token }}
 
   level:
-    description: 'Report level for reviewdog [info,warning,error].'
-    default: 'warning'
-
-  phpstan_level:
-    description: 'Report level for phpstan.'
-    default: ''
+    description: "Report level for reviewdog [info,warning,error]"
+    required: false
+    default: "error"
 
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
-    default: 'github-pr-check'
+    description: |
+      Reporter of reviewdog command [github-check,github-pr-review].
+      Default is github-pr-check.
+    required: false
+    default: "github-pr-check"
 
-  target_directory:
-    description: 'Directory to run checks against'
-    default: ''
-
-  fail_on_error:
-    description: Fail on error.
-    default: 'false'
-
-  args:
-    description: Catch-all for any command-line arguments you would like to add.
-    default: ''
+  fail_level:
+    description: |
+      If set to `none`, always use exit code 0 for reviewdog. Otherwise, exit code 1 for reviewdog if it finds at least 1 issue with severity greater than or equal to the given level.
+      Possible values: [none,any,info,warning,error]
+      Default is `none`.
+    default: "error"
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.github_token }}
-    - ${{ inputs.level }}
-    - ${{ inputs.reporter }}
-    - ${{ inputs.target_directory }}
-    - ${{ inputs.args }}
-    - ${{ inputs.fail_on_error }}
-    - ${{ inputs.phpstan_level }}
-
+  using: "composite"
+  steps:
+    - id: supported-versions-matrix
+      uses: WyriHaximus/github-action-composer-php-versions-in-range@v1
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ steps.supported-versions-matrix.outputs.lowest }}
+        tools: flex,composer:v${{ steps.config.outputs.composer-version || '2.2' }}
+        coverage: xdebug
+        extensions: ${{ join(fromJson(steps.supported-versions-matrix.outputs.extensions), ',') }}
+    - name: Install PhpStan
+      shell: bash
+      run: |
+        composer require --dev phpstan/phpstan-symony sidz/phpstan-rules
+        bin/console cache:warmup
+    - run: $GITHUB_ACTION_PATH/script.sh
+      shell: bash
+      env:
+        REVIEWDOG_VERSION: v0.20.3
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_LEVEL: ${{ inputs.level }}
+        INPUT_REPORTER: ${{ inputs.reporter }}
+        INPUT_FAIL_LEVEL: ${{ inputs.fail_level }}
 branding:
-  icon: 'check-circle'
-  color: 'green'
-
+  icon: "check-circle"
+  color: "green"
