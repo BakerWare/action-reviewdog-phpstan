@@ -43,6 +43,10 @@ runs:
       run: |
         composer require --dev phpstan/phpstan-symfony sidz/phpstan-rules
         bin/console cache:warmup
+    - name: 
+      shell: bash
+      run: |
+        chmod +x "$GITHUB_ACTION_PATH/execute.sh"
     - run: $GITHUB_ACTION_PATH/execute.sh
       shell: bash
       env:
