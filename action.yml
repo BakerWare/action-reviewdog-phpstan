@@ -29,15 +29,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - id: supported-versions-matrix
-      uses: WyriHaximus/github-action-composer-php-versions-in-range@v1
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ steps.supported-versions-matrix.outputs.lowest }}
-        tools: flex,composer:v${{ steps.config.outputs.composer-version || '2.2' }}
-        coverage: xdebug
-        extensions: ${{ join(fromJson(steps.supported-versions-matrix.outputs.extensions), ',') }}
     - name: Install PhpStan
       shell: bash
       run: |
