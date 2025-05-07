@@ -41,7 +41,7 @@ runs:
     - name: Install PhpStan
       shell: bash
       run: |
-        composer require --dev phpstan/phpstan-symony sidz/phpstan-rules
+        composer require --dev phpstan/phpstan-symfony sidz/phpstan-rules
         bin/console cache:warmup
     - run: $GITHUB_ACTION_PATH/script.sh
       shell: bash
