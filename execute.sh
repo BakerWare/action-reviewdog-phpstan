@@ -15,11 +15,5 @@ echo '::group::🐶 Setting Up Phpstan config'
 cp "${github_action_path}/.github/phpstan.dist.neon" "${GITHUB_WORKSPACE}/phpstan.dist.neon"
 echo '::endgroup::'
 
-echo '::group:: Running phpstan with reviewdog 🐶 ...'
-
 vendor/bin/phpstan analyse --memory-limit 1G --error-format=raw |
     reviewdog -tee -name=PHPStan -f=phpstan -reporter="${INPUT_REPORTER:-github-pr-check}" -level="${INPUT_LEVEL}" -fail-level="${INPUT_FAIL_LEVEL}" -diff='git diff'
-
-reviewdog_rc=$?
-echo '::endgroup::'
-exit $reviewdog_rc
