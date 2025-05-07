@@ -17,8 +17,10 @@ echo '::endgroup::'
 
 echo '::group:: Running phpstan with reviewdog 🐶 ...'
 
+reviewdog --version
+
 vendor/bin/phpstan analyse --memory-limit 1G --error-format=raw \
-  | reviewdog -tee -name=PHPStan -f=phpstan -reporter="${INPUT_REPORTER:-github-pr-review}" -level="${INPUT_LEVEL}" -fail-level="${INPUT_FAIL_LEVEL}" -diff='git diff'
+  | reviewdog -tee -name=PHPStan -f=phpstan -reporter="${INPUT_REPORTER:-github-pr-review}" -level="${INPUT_LEVEL}" -fail-level="${INPUT_FAIL_LEVEL}"
 
 reviewdog_rc=$?
 echo '::endgroup::'
