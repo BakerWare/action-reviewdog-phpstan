@@ -12,7 +12,9 @@ curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.s
 echo '::endgroup::'
 
 echo '::group::🐶 Setting Up Phpstan config'
-cp "${github_action_path}/.github/phpstan.dist.neon" "${GITHUB_WORKSPACE}/phpstan.dist.neon"
+if [ ! -f "${GITHUB_WORKSPACE}/phpstan.dist.neon" ]; then
+    cp "${github_action_path}/.github/phpstan.dist.neon" "${GITHUB_WORKSPACE}/phpstan.dist.neon"
+fi
 echo '::endgroup::'
 
 echo '::group:: Running phpstan with reviewdog 🐶 ...'
