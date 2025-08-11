@@ -26,6 +26,15 @@ inputs:
       Default is `none`.
     default: "any"
 
+  filter_mode:
+    description: |
+      reviewdog filter results by diff and you can control how reviewdog filter results by -filter-mode flag. Available filter modes are as below.
+      added
+      Filter results by added/modified lines.
+      diff_context (default)
+      Filter results by diff context. i.e. changed lines +-N lines (N=3 for example).
+    default: "diff_context"
+
 runs:
   using: "composite"
   steps:
@@ -46,6 +55,7 @@ runs:
         INPUT_LEVEL: ${{ inputs.level }}
         INPUT_REPORTER: ${{ inputs.reporter }}
         INPUT_FAIL_LEVEL: ${{ inputs.fail_level }}
+        INPUT_DIFF_CONTEXT: ${{ inputs.filter_mode }}
 branding:
   icon: "check-circle"
   color: "green"
