@@ -42,6 +42,16 @@ runs:
       shell: bash
       run: |
         composer require --dev phpstan/phpstan-symfony sidz/phpstan-rules
+    - name: "Check file existence"
+      uses: andstor/file-existence-action@v3
+      id: check_files
+      with:
+          files: "bin/console"
+          fail: false
+    - name: 'Cache'
+      shell: bash
+      if: steps.check_files.outputs.files_exists == 'true'
+      run: |
         bin/console cache:warmup
     - name: 
       shell: bash
