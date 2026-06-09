@@ -35,6 +35,10 @@ inputs:
       Filter results by diff context. i.e. changed lines +-N lines (N=3 for example).
     default: "diff_context"
 
+    no_cache_warmup:
+      description: disable cache:warmup even if a bin/console file exists
+      default: 'false'
+
 runs:
   using: "composite"
   steps:
@@ -50,7 +54,7 @@ runs:
           fail: false
     - name: 'Cache'
       shell: bash
-      if: steps.check_files.outputs.files_exists == 'true'
+      if: steps.check_files.outputs.files_exists == 'true' && inputs.no_cache_warmup == 'false'
       run: |
         bin/console cache:warmup
     - name: 
